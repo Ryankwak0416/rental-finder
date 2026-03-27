@@ -23,19 +23,21 @@
 
   /* 헤더 */
   .header {
-    background: linear-gradient(135deg, #FF6B00, #FF8C33);
-    padding: 16px 20px;
+    background: #FFFFFF;
+    padding: 14px 20px 10px;
     position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 12px rgba(255,107,0,0.3);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-bottom: 3px solid #FF6B00;
   }
   .header-inner {
     max-width: 600px; margin: 0 auto;
-    display: flex; align-items: center; gap: 10px;
-    color: white;
+    display: flex; align-items: center; gap: 12px;
+    color: #1A1A2E;
   }
-  .header-inner .logo { font-size: 24px; }
-  .header-inner h1 { font-size: 18px; font-weight: 700; }
-  .header-inner small { font-size: 11px; opacity: 0.8; display: block; }
+  .header-inner .logo-img { height: 44px; flex-shrink: 0; }
+  .header-inner h1 { font-size: 16px; font-weight: 700; color: #1A1A2E; }
+  .header-inner .subtitle { font-size: 11px; color: #FF6B00; font-weight: 600; display: block; }
+  .header-inner .address { font-size: 10px; color: #888; display: block; margin-top: 1px; }
 
   .container { max-width: 600px; margin: 0 auto; padding: 16px 12px 80px; }
 
@@ -177,8 +179,17 @@
 
 <div class="header">
   <div class="header-inner">
-    <span class="logo">🏗️</span>
-    <div><h1>주식회사시암 중장비검색기</h1><small>전국 어디서나 즉시 검색</small></div>
+    <svg class="logo-img" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="22,2 42,38 2,38" fill="#FF8C00"/>
+      <polygon points="14,18 30,46 -2,46" fill="#FF6B00"/>
+      <text x="50" y="30" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="30" fill="#1A1A2E">CIAM</text>
+      <text x="50" y="44" font-family="Arial,sans-serif" font-weight="600" font-size="6.5" fill="#1A1A2E" letter-spacing="1.2">CREATIVE INNOVATION ASSEMBLY MODULE</text>
+    </svg>
+    <div>
+      <h1>중장비검색기</h1>
+      <span class="subtitle">전국 어디서나 즉시 검색</span>
+      <span class="address">📍 충북 청주시 청원구 내수읍 덕암길 11-1</span>
+    </div>
   </div>
 </div>
 
