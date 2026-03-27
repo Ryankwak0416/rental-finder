@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>중장비 렌탈 바로찾기</title>
+<title>주식회사시암 중장비검색기</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,6 +39,7 @@
 
   .container { max-width: 600px; margin: 0 auto; padding: 16px 12px 80px; }
 
+  /* 검색 박스 */
   .search-box {
     background: white;
     border-radius: 16px;
@@ -62,6 +63,7 @@
   }
   select:focus, input:focus { outline: none; border-color: var(--primary); background: white; }
 
+  /* 장비 칩 */
   .chip-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip {
     padding: 7px 14px; border: 1.5px solid #E5E7EB; border-radius: 20px;
@@ -70,6 +72,7 @@
   }
   .chip.active { background: var(--primary); border-color: var(--primary); color: white; }
 
+  /* 검색 버튼 */
   .btn-search {
     width: 100%; padding: 14px;
     background: var(--primary); color: white; border: none; border-radius: 12px;
@@ -78,13 +81,17 @@
   }
   .btn-search:active { opacity: 0.9; }
 
+  /* 빠른 검색 */
   .quick-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
   .quick-chip {
     padding: 8px 14px; background: white; border: 1px solid #E0E0E0;
-    border-radius: 20px; font-size: 12px; cursor: pointer; font-family: inherit; color: #555;
+    border-radius: 20px; font-size: 12px; cursor: pointer; font-family: inherit;
+    color: #555;
   }
   .quick-chip:active { background: #FFF3E8; border-color: var(--primary); }
 
+  /* 결과 영역 */
+  .results-wrap { margin-top: 8px; }
   .results-title {
     font-size: 14px; font-weight: 700; color: #333;
     padding: 8px 4px; display: flex; align-items: center; gap: 6px;
@@ -94,14 +101,20 @@
     font-size: 11px; padding: 2px 8px; border-radius: 10px;
   }
 
+  /* 업체 카드 - 깔끔한 리스트 */
   .biz-list { list-style: none; }
   .biz-item {
-    background: white; border-radius: 12px; padding: 14px 16px;
-    margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    display: flex; align-items: center; gap: 14px;
+    background: white;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
   .biz-num {
-    width: 28px; flex-shrink: 0;
+    width: 28px; height: 28px; flex-shrink: 0;
     background: var(--primary); color: white;
     border-radius: 50%; font-size: 13px; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
@@ -128,11 +141,13 @@
   .biz-action.google { background: #4285F4; }
   .biz-action.tel { background: #6366F1; }
 
+  /* 구분선 */
   .divider {
     border: none; border-top: 1px solid #EBEBEB;
     margin: 16px 0 12px;
   }
 
+  /* 지도 검색 바 */
   .map-bar {
     background: white; border-radius: 12px;
     padding: 12px 16px; margin-bottom: 8px;
@@ -163,7 +178,7 @@
 <div class="header">
   <div class="header-inner">
     <span class="logo">🏗️</span>
-    <div><h1>중장비 렌탈 바로찾기</h1><small>전국 어디서나 즉시 검색</small></div>
+    <div><h1>주식회사시암 중장비검색기</h1><small>전국 어디서나 즉시 검색</small></div>
   </div>
 </div>
 
@@ -194,6 +209,9 @@
         <div class="chip" data-value="고소작업차" onclick="toggleChip(this)">고소작업차</div>
         <div class="chip" data-value="카고크레인" onclick="toggleChip(this)">카고크레인</div>
         <div class="chip" data-value="스카이" onclick="toggleChip(this)">스카이</div>
+        <div class="chip" data-value="화물차" onclick="toggleChip(this)">🚛 화물차</div>
+        <div class="chip" data-value="다마스퀵" onclick="toggleChip(this)">🚐 다마스퀵</div>
+        <div class="chip" data-value="오토바이퀵" onclick="toggleChip(this)">🏍️ 오토바이퀵</div>
       </div>
     </div>
     <button class="btn-search" onclick="doSearch()">🔍 렌탈 업체 바로 찾기</button>
@@ -290,13 +308,11 @@ function showResults(loc, query, equip) {
   const eq = equip || '중장비';
   const enc = encodeURIComponent(query);
 
-  // 업체 리스트 생성
   const companies = buildCompanyList(loc, eq);
   const total = companies.length;
 
   let html = '';
 
-  // 1. 지도 검색 바 (상단 고정)
   html += `
     <div class="map-bar">
       <span class="map-bar-icon">🗺️</span>
@@ -309,7 +325,6 @@ function showResults(loc, query, equip) {
     </div>
   `;
 
-  // 2. 업체 리스트
   html += `
     <div class="results-title">
       📋 ${loc} 중장비 렌탈 업체 <span class="count">${total}건</span>
@@ -333,7 +348,6 @@ function showResults(loc, query, equip) {
 
   html += '</ul>';
 
-  // 3. 추가 검색 링크
   html += `
     <hr class="divider">
     <div class="results-title">🔗 더 찾아보기</div>
@@ -373,7 +387,6 @@ function buildCompanyList(loc, equip) {
   const nq = (q) => "https://search.naver.com/search.naver?query=" + encodeURIComponent(q);
   const mq = (q) => "https://map.naver.com/v5/search/" + encodeURIComponent(q);
 
-  // 지역 기반 일반 렌탈
   list.push({
     name: loc + " 중장비 렌탈",
     desc: loc + " 인근 중장비 렌탈 업체 전체",
@@ -381,7 +394,6 @@ function buildCompanyList(loc, equip) {
     url: mq(loc + " 중장비 렌탈")
   });
 
-  // 장비별 맞춤 검색
   if (!equip || equip === '중장비') {
     list.push(
       { name: loc + " 굴삭기(포크레인) 렌탈", desc: "굴삭기·포크레인 임대 업체", tags: ["굴삭기","포크레인"], url: mq(loc + " 굴삭기 포크레인 렌탈") },
@@ -390,10 +402,12 @@ function buildCompanyList(loc, equip) {
       { name: loc + " 고소작업차 렌탈", desc: "고소작업차·스카이차 임대", tags: ["고소작업차","스카이"], url: mq(loc + " 고소작업차 스카이 렌탈") },
       { name: loc + " 덤프트럭 렌탈", desc: "덤프트럭·화물차 임대", tags: ["덤프트럭"], url: mq(loc + " 덤프트럭 렌탈") },
       { name: loc + " 로더 렌탈", desc: "휠로더·페이로더 임대", tags: ["로더","휠로더"], url: mq(loc + " 로더 렌탈") },
-      { name: loc + " 롤러 렌탈", desc: "로드롤러·진동롤러 임대", tags: ["롤러"], url: mq(loc + " 롤러 렌탈") }
+      { name: loc + " 롤러 렌탈", desc: "로드롤러·진동롤러 임대", tags: ["롤러"], url: mq(loc + " 롤러 렌탈") },
+      { name: loc + " 화물차 렌탈", desc: "화물차·카고트럭 임대", tags: ["화물차","카고"], url: mq(loc + " 화물차 렌탈") },
+      { name: loc + " 다마스 퀵서비스", desc: "다마스·라보 퀵 배송", tags: ["다마스","퀵서비스"], url: mq(loc + " 다마스 퀵") },
+      { name: loc + " 오토바이 퀵서비스", desc: "오토바이 퀵·바이크 배송", tags: ["오토바이","퀵서비스"], url: mq(loc + " 오토바이 퀵") }
     );
   } else {
-    // 선택된 장비만
     const eqs = equip.split(' ');
     eqs.forEach(e => {
       list.push({
@@ -405,7 +419,11 @@ function buildCompanyList(loc, equip) {
     });
   }
 
-  // 전국 대형 렌탈 업체
+  list.push(
+    { name: loc + " 화물차 용달", desc: "용달·화물 운송 업체", tags: ["화물차","용달"], url: mq(loc + " 용달 화물") },
+    { name: loc + " 퀵서비스 종합", desc: "다마스·오토바이·화물 퀵 종합", tags: ["퀵서비스","종합"], url: mq(loc + " 퀵서비스") }
+  );
+
   list.push(
     { name: "두산밥캣 렌탈 (" + loc + ")", desc: "전국 지점 · 굴삭기/로더/지게차 전문", tags: ["전국체인","굴삭기","로더"], url: nq(loc + " 두산밥캣 렌탈") },
     { name: "현대건설기계 렌탈 (" + loc + ")", desc: "전국 대리점 · 굴삭기/휠로더/지게차", tags: ["전국체인","굴삭기","지게차"], url: nq(loc + " 현대건설기계 렌탈") },
