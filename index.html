@@ -7,82 +7,235 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root { --primary: #FF6B00; --dark: #1A1A2E; --gray: #6B7280; --light-gray: #F3F4F6; --white: #FFFFFF; }
-  body { font-family: 'Noto Sans KR', -apple-system, sans-serif; background: #F5F5F5; min-height: 100vh; color: #333; }
-  .header { background: linear-gradient(135deg, #FF6B00, #FF8C33); padding: 16px 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(255,107,0,0.3); }
-  .header-inner { max-width: 600px; margin: 0 auto; display: flex; align-items: center; gap: 10px; color: white; }
+  :root {
+    --primary: #FF6B00;
+    --dark: #1A1A2E;
+    --gray: #6B7280;
+    --light-gray: #F3F4F6;
+    --white: #FFFFFF;
+  }
+  body {
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    background: #F5F5F5;
+    min-height: 100vh;
+    color: #333;
+  }
+
+  /* 헤더 */
+  .header {
+    background: linear-gradient(135deg, #FF6B00, #FF8C33);
+    padding: 16px 20px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(255,107,0,0.3);
+  }
+  .header-inner {
+    max-width: 600px; margin: 0 auto;
+    display: flex; align-items: center; gap: 10px;
+    color: white;
+  }
   .header-inner .logo { font-size: 24px; }
   .header-inner h1 { font-size: 18px; font-weight: 700; }
   .header-inner small { font-size: 11px; opacity: 0.8; display: block; }
+
   .container { max-width: 600px; margin: 0 auto; padding: 16px 12px 80px; }
-  .search-box { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); margin-bottom: 12px; }
+
+  /* 검색 박스 */
+  .search-box {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    margin-bottom: 12px;
+  }
   .search-box h2 { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
   .form-group { margin-bottom: 12px; }
   .form-label { font-size: 12px; font-weight: 600; color: var(--gray); margin-bottom: 4px; display: block; }
   .select-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  select, input[type="text"] { width: 100%; padding: 12px 14px; border: 1.5px solid #E5E7EB; border-radius: 10px; font-size: 14px; font-family: inherit; color: #333; background: #FAFAFA; appearance: none; -webkit-appearance: none; }
-  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 30px; }
+  select, input[type="text"] {
+    width: 100%; padding: 12px 14px;
+    border: 1.5px solid #E5E7EB; border-radius: 10px;
+    font-size: 14px; font-family: inherit; color: #333;
+    background: #FAFAFA; appearance: none; -webkit-appearance: none;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 30px;
+  }
   select:focus, input:focus { outline: none; border-color: var(--primary); background: white; }
+
+  /* 장비 칩 */
   .chip-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip { padding: 7px 14px; border: 1.5px solid #E5E7EB; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; background: white; color: var(--gray); user-select: none; }
+  .chip {
+    padding: 7px 14px; border: 1.5px solid #E5E7EB; border-radius: 20px;
+    font-size: 12px; font-weight: 500; cursor: pointer;
+    background: white; color: var(--gray); user-select: none;
+  }
   .chip.active { background: var(--primary); border-color: var(--primary); color: white; }
-  .btn-search { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer; margin-top: 14px; }
+
+  /* 검색 버튼 */
+  .btn-search {
+    width: 100%; padding: 14px;
+    background: var(--primary); color: white; border: none; border-radius: 12px;
+    font-size: 16px; font-weight: 700; font-family: inherit;
+    cursor: pointer; margin-top: 14px;
+  }
   .btn-search:active { opacity: 0.9; }
+
+  /* 빠른 검색 */
   .quick-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-  .quick-chip { padding: 8px 14px; background: white; border: 1px solid #E0E0E0; border-radius: 20px; font-size: 12px; cursor: pointer; font-family: inherit; color: #555; }
+  .quick-chip {
+    padding: 8px 14px; background: white; border: 1px solid #E0E0E0;
+    border-radius: 20px; font-size: 12px; cursor: pointer; font-family: inherit;
+    color: #555;
+  }
   .quick-chip:active { background: #FFF3E8; border-color: var(--primary); }
-  .results-title { font-size: 14px; font-weight: 700; color: #333; padding: 8px 4px; display: flex; align-items: center; gap: 6px; }
+
+  /* 결과 영역 */
+  .results-wrap { margin-top: 8px; }
+  .results-title {
+    font-size: 14px; font-weight: 700; color: #333;
+    padding: 8px 4px; display: flex; align-items: center; gap: 6px;
+  }
+  .results-title .count {
+    background: var(--primary); color: white;
+    font-size: 11px; padding: 2px 8px; border-radius: 10px;
+  }
+
+  /* 업체 카드 - 깔끔한 리스트 */
   .biz-list { list-style: none; }
-  .biz-item { background: white; border-radius: 12px; padding: 14px 16px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 14px; }
-  .biz-num { width: 28px; height: 28px; flex-shrink: 0; background: var(--primary); color: white; border-radius: 50%; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .biz-item {
+    background: white;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .biz-num {
+    width: 28px; height: 28px; flex-shrink: 0;
+    background: var(--primary); color: white;
+    border-radius: 50%; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
   .biz-info { flex: 1; min-width: 0; }
   .biz-name { font-size: 15px; font-weight: 700; color: #222; margin-bottom: 2px; }
   .biz-desc { font-size: 12px; color: #888; line-height: 1.4; }
-  .biz-action { flex-shrink: 0; padding: 8px 14px; background: #03C75A; color: white; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; }
+  .biz-tags { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+  .biz-tag {
+    font-size: 10px; background: #FFF3E8; color: var(--primary);
+    padding: 2px 8px; border-radius: 10px; font-weight: 600;
+  }
+  .biz-action {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    background: #03C75A; color: white;
+    border: none; border-radius: 8px;
+    font-size: 12px; font-weight: 600; font-family: inherit;
+    cursor: pointer; text-decoration: none;
+    white-space: nowrap;
+  }
   .biz-action.naver { background: #03C75A; }
+  .biz-action.kakao { background: #FEE500; color: #333; }
   .biz-action.google { background: #4285F4; }
-  .divider { border: none; border-top: 1px solid #EBEBEB; margin: 16px 0 12px; }
-  .map-bar { background: white; border-radius: 12px; padding: 12px 16px; margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px; }
+  .biz-action.tel { background: #6366F1; }
+
+  /* 구분선 */
+  .divider {
+    border: none; border-top: 1px solid #EBEBEB;
+    margin: 16px 0 12px;
+  }
+
+  /* 지도 검색 바 */
+  .map-bar {
+    background: white; border-radius: 12px;
+    padding: 12px 16px; margin-bottom: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    display: flex; align-items: center; gap: 10px;
+  }
   .map-bar-icon { font-size: 20px; flex-shrink: 0; }
   .map-bar-text { flex: 1; }
   .map-bar-text .t1 { font-size: 13px; font-weight: 700; }
   .map-bar-text .t2 { font-size: 11px; color: #888; }
-  .map-bar a { padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; text-decoration: none; color: white; white-space: nowrap; }
+  .map-bar a {
+    padding: 8px 14px; border-radius: 8px;
+    font-size: 12px; font-weight: 600; text-decoration: none;
+    color: white; white-space: nowrap;
+  }
+
   .empty-state { text-align: center; padding: 60px 20px; color: #bbb; }
   .empty-state .icon { font-size: 50px; margin-bottom: 12px; }
-  @media (max-width: 400px) { .biz-item { flex-wrap: wrap; } .biz-action { width: 100%; text-align: center; margin-top: 8px; } }
+
+  @media (max-width: 400px) {
+    .biz-item { flex-wrap: wrap; }
+    .biz-action { width: 100%; text-align: center; margin-top: 8px; }
+  }
 </style>
 </head>
 <body>
-<div class="header"><div class="header-inner"><span class="logo">🏗️</span><div><h1>주식회사시암 중장비검색기</h1><small>전국 어디서나 즉시 검색</small></div></div></div>
+
+<div class="header">
+  <div class="header-inner">
+    <span class="logo">🏗️</span>
+    <div><h1>주식회사시암 중장비검색기</h1><small>전국 어디서나 즉시 검색</small></div>
+  </div>
+</div>
+
 <div class="container">
+
   <div class="search-box">
     <h2>🔍 지역·장비 선택 후 바로 찾기</h2>
-    <div class="form-group"><div class="select-row"><select id="sido" onchange="updateSigungu()"><option value="">시/도</option></select><select id="sigungu"><option value="">시/군/구</option></select></div></div>
-    <div class="form-group"><input type="text" id="addressInput" placeholder="또는 주소 직접 입력 (예: 화성시 봉담읍)" onkeydown="if(event.key==='Enter') doSearch()"></div>
-    <div class="form-group"><label class="form-label">장비 종류</label><div class="chip-wrap" id="equipChips">
-      <div class="chip active" data-value="전체" onclick="toggleChip(this)">전체</div>
-      <div class="chip" data-value="포크레인" onclick="toggleChip(this)">포크레인</div>
-      <div class="chip" data-value="크레인" onclick="toggleChip(this)">크레인</div>
-      <div class="chip" data-value="지게차" onclick="toggleChip(this)">지게차</div>
-      <div class="chip" data-value="굴삭기" onclick="toggleChip(this)">굴삭기</div>
-      <div class="chip" data-value="덤프트럭" onclick="toggleChip(this)">덤프트럭</div>
-      <div class="chip" data-value="로더" onclick="toggleChip(this)">로더</div>
-      <div class="chip" data-value="롤러" onclick="toggleChip(this)">롤러</div>
-      <div class="chip" data-value="고소작업차" onclick="toggleChip(this)">고소작업차</div>
-      <div class="chip" data-value="카고크레인" onclick="toggleChip(this)">카고크레인</div>
-      <div class="chip" data-value="스카이" onclick="toggleChip(this)">스카이</div>
-      <div class="chip" data-value="화물차" onclick="toggleChip(this)">🚛 화물차</div>
-      <div class="chip" data-value="다마스퀵" onclick="toggleChip(this)">🚐 다마스퀵</div>
-      <div class="chip" data-value="오토바이퀵" onclick="toggleChip(this)">🏍️ 오토바이퀵</div>
-    </div></div>
+    <div class="form-group">
+      <div class="select-row">
+        <select id="sido" onchange="updateSigungu()"><option value="">시/도</option></select>
+        <select id="sigungu"><option value="">시/군/구</option></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" id="addressInput" placeholder="또는 주소 직접 입력 (예: 화성시 봉담읍)" onkeydown="if(event.key==='Enter') doSearch()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">장비 종류</label>
+      <div class="chip-wrap" id="equipChips">
+        <div class="chip active" data-value="전체" onclick="toggleChip(this)">전체</div>
+        <div class="chip" data-value="포크레인" onclick="toggleChip(this)">포크레인</div>
+        <div class="chip" data-value="크레인" onclick="toggleChip(this)">크레인</div>
+        <div class="chip" data-value="지게차" onclick="toggleChip(this)">지게차</div>
+        <div class="chip" data-value="굴삭기" onclick="toggleChip(this)">굴삭기</div>
+        <div class="chip" data-value="덤프트럭" onclick="toggleChip(this)">덤프트럭</div>
+        <div class="chip" data-value="로더" onclick="toggleChip(this)">로더</div>
+        <div class="chip" data-value="롤러" onclick="toggleChip(this)">롤러</div>
+        <div class="chip" data-value="고소작업차" onclick="toggleChip(this)">고소작업차</div>
+        <div class="chip" data-value="카고크레인" onclick="toggleChip(this)">카고크레인</div>
+        <div class="chip" data-value="스카이" onclick="toggleChip(this)">스카이</div>
+        <div class="chip" data-value="화물차" onclick="toggleChip(this)">🚛 화물차</div>
+        <div class="chip" data-value="다마스퀵" onclick="toggleChip(this)">🚐 다마스퀵</div>
+        <div class="chip" data-value="오토바이퀵" onclick="toggleChip(this)">🏍️ 오토바이퀵</div>
+      </div>
+    </div>
     <button class="btn-search" onclick="doSearch()">🔍 렌탈 업체 바로 찾기</button>
   </div>
+
   <div class="quick-row">
-    <button class="quick-chip" onclick="quickSearch('서울')">서울</button><button class="quick-chip" onclick="quickSearch('경기')">경기</button><button class="quick-chip" onclick="quickSearch('인천')">인천</button><button class="quick-chip" onclick="quickSearch('충남')">충남</button><button class="quick-chip" onclick="quickSearch('경남')">경남</button><button class="quick-chip" onclick="quickSearch('부산')">부산</button><button class="quick-chip" onclick="quickSearch('대전')">대전</button><button class="quick-chip" onclick="quickSearch('광주')">광주</button>
+    <button class="quick-chip" onclick="quickSearch('서울')">서울</button>
+    <button class="quick-chip" onclick="quickSearch('경기')">경기</button>
+    <button class="quick-chip" onclick="quickSearch('인천')">인천</button>
+    <button class="quick-chip" onclick="quickSearch('충남')">충남</button>
+    <button class="quick-chip" onclick="quickSearch('경남')">경남</button>
+    <button class="quick-chip" onclick="quickSearch('부산')">부산</button>
+    <button class="quick-chip" onclick="quickSearch('대전')">대전</button>
+    <button class="quick-chip" onclick="quickSearch('광주')">광주</button>
   </div>
-  <div id="results"><div class="empty-state"><div class="icon">🏗️</div><p>지역을 선택하고 <strong>바로 찾기</strong>를 누르세요</p></div></div>
+
+  <div id="results">
+    <div class="empty-state">
+      <div class="icon">🏗️</div>
+      <p>지역을 선택하고 <strong>바로 찾기</strong>를 누르세요</p>
+    </div>
+  </div>
 </div>
+
 <script>
 const regions = {
   "서울특별시": ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"],
@@ -103,46 +256,218 @@ const regions = {
   "경상남도": ["거제시","거창군","고성군","김해시","남해군","밀양시","사천시","산청군","양산시","의령군","진주시","창녕군","창원시","통영시","하동군","함안군","함양군","합천군"],
   "제주특별자치도": ["서귀포시","제주시"]
 };
+
 const sidoSelect = document.getElementById('sido');
-Object.keys(regions).forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sidoSelect.appendChild(o); });
-function updateSigungu() { const s = sidoSelect.value, sel = document.getElementById('sigungu'); sel.innerHTML = '<option value="">시/군/구</option>'; if (s && regions[s]) regions[s].forEach(g => { const o = document.createElement('option'); o.value = g; o.textContent = g; sel.appendChild(o); }); }
-function toggleChip(el) { if (el.dataset.value === '전체') { document.querySelectorAll('.chip').forEach(c => c.classList.remove('active')); el.classList.add('active'); } else { document.querySelector('.chip[data-value="전체"]').classList.remove('active'); el.classList.toggle('active'); if (!document.querySelector('.chip.active')) document.querySelector('.chip[data-value="전체"]').classList.add('active'); } }
-function getEquip() { const a = document.querySelectorAll('.chip.active'); const v = Array.from(a).map(c => c.dataset.value); return v.includes('전체') ? '' : v.join(' '); }
-function getLoc() { const addr = document.getElementById('addressInput').value.trim(); if (addr) return addr; const s = sidoSelect.value, g = document.getElementById('sigungu').value; return s ? (g ? s + ' ' + g : s) : ''; }
-function doSearch() { const loc = getLoc(); if (!loc) { alert('지역을 선택하거나 주소를 입력해주세요!'); return; } const eq = getEquip(); const mainQuery = eq ? loc + ' ' + eq + ' 렌탈' : loc + ' 중장비 렌탈'; window.open('https://map.naver.com/v5/search/' + encodeURIComponent(mainQuery), '_blank'); showResults(loc, eq); }
+Object.keys(regions).forEach(s => {
+  const o = document.createElement('option'); o.value = s; o.textContent = s;
+  sidoSelect.appendChild(o);
+});
+
+function updateSigungu() {
+  const s = sidoSelect.value, sel = document.getElementById('sigungu');
+  sel.innerHTML = '<option value="">시/군/구</option>';
+  if (s && regions[s]) regions[s].forEach(g => { const o = document.createElement('option'); o.value = g; o.textContent = g; sel.appendChild(o); });
+}
+
+function toggleChip(el) {
+  if (el.dataset.value === '전체') {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  } else {
+    document.querySelector('.chip[data-value="전체"]').classList.remove('active');
+    el.classList.toggle('active');
+    if (!document.querySelector('.chip.active')) document.querySelector('.chip[data-value="전체"]').classList.add('active');
+  }
+}
+
+function getEquip() {
+  const a = document.querySelectorAll('.chip.active');
+  const v = Array.from(a).map(c => c.dataset.value);
+  return v.includes('전체') ? '' : v.join(' ');
+}
+
+function getLoc() {
+  const addr = document.getElementById('addressInput').value.trim();
+  if (addr) return addr;
+  const s = sidoSelect.value, g = document.getElementById('sigungu').value;
+  return s ? (g ? s + ' ' + g : s) : '';
+}
+
+// 주소에서 지역명(시/군/구/읍/면)만 추출
+function extractArea(loc) {
+  // "경기도 화성시 봉담읍 삼천리로 123" → "화성시 봉담읍"
+  // "서울특별시 강남구 역삼동 123-45" → "강남구 역삼동"
+  const parts = loc.split(/\s+/);
+  const areaWords = [];
+  for (const p of parts) {
+    // 시/도, 시/군/구, 읍/면/동 단위만 추출
+    if (p.match(/(특별시|광역시|특별자치시|특별자치도|도)$/) ||
+        p.match(/(시|군|구|읍|면|동)$/) ||
+        p.match(/^(서울|부산|대구|인천|광주|대전|울산|세종|경기|강원|충북|충남|전북|전남|경북|경남|제주)$/)) {
+      areaWords.push(p);
+    }
+  }
+  // 지역명이 추출되면 그걸 사용, 아니면 원래 입력 그대로
+  return areaWords.length > 0 ? areaWords.join(' ') : loc;
+}
+
+function doSearch() {
+  const loc = getLoc();
+  if (!loc) { alert('지역을 선택하거나 주소를 입력해주세요!'); return; }
+  const eq = getEquip();
+
+  // 주소에서 지역명 추출 (번지/도로명 제거)
+  const area = extractArea(loc);
+  const bizType = eq || '중장비 렌탈';
+
+  // "중장비 렌탈 화성시 봉담읍" 형태로 검색 (업체가 먼저 나오도록)
+  const mapQuery = bizType + ' ' + area;
+
+  // 바로 네이버 지도 열기 (업체 검색)
+  window.open('https://map.naver.com/v5/search/' + encodeURIComponent(mapQuery), '_blank');
+
+  // 앱 화면에 장비별 바로가기 표시
+  showResults(area, eq);
+}
+
 function quickSearch(r) { document.getElementById('addressInput').value = r; doSearch(); }
+
 function showResults(loc, equip) {
   const el = document.getElementById('results');
   const mq = (q) => "https://map.naver.com/v5/search/" + encodeURIComponent(q);
   const nq = (q) => "https://search.naver.com/search.naver?query=" + encodeURIComponent(q);
   const kq = (q) => "https://map.kakao.com/?q=" + encodeURIComponent(q);
+
+  // 장비 카테고리 정의 (업체종류 + 지역명 순서로 검색)
   const categories = [
-    { icon: "⛏️", label: "굴삭기·포크레인", query: loc + " 굴삭기 포크레인 렌탈" },
-    { icon: "🏗️", label: "크레인·카고크레인", query: loc + " 크레인 렌탈" },
-    { icon: "📦", label: "지게차", query: loc + " 지게차 렌탈" },
-    { icon: "📐", label: "고소작업차·스카이", query: loc + " 고소작업차 스카이 렌탈" },
-    { icon: "🚛", label: "덤프트럭", query: loc + " 덤프트럭 렌탈" },
-    { icon: "🚜", label: "로더·휠로더", query: loc + " 휠로더 렌탈" },
-    { icon: "🛞", label: "롤러", query: loc + " 롤러 렌탈" },
-    { icon: "🚚", label: "화물차·용달", query: loc + " 화물차 용달" },
-    { icon: "🚐", label: "다마스 퀵", query: loc + " 다마스 퀵서비스" },
-    { icon: "🏍️", label: "오토바이 퀵", query: loc + " 오토바이 퀵서비스" },
+    { icon: "⛏️", label: "굴삭기·포크레인", query: "굴삭기 포크레인 렌탈 " + loc },
+    { icon: "🏗️", label: "크레인·카고크레인", query: "크레인 렌탈 " + loc },
+    { icon: "📦", label: "지게차", query: "지게차 렌탈 " + loc },
+    { icon: "📐", label: "고소작업차·스카이", query: "고소작업차 스카이 렌탈 " + loc },
+    { icon: "🚛", label: "덤프트럭", query: "덤프트럭 렌탈 " + loc },
+    { icon: "🚜", label: "로더·휠로더", query: "휠로더 렌탈 " + loc },
+    { icon: "🛞", label: "롤러", query: "롤러 렌탈 " + loc },
+    { icon: "🚚", label: "화물차·용달", query: "화물차 용달 " + loc },
+    { icon: "🚐", label: "다마스 퀵", query: "다마스 퀵서비스 " + loc },
+    { icon: "🏍️", label: "오토바이 퀵", query: "오토바이 퀵서비스 " + loc },
   ];
+
   let html = '';
-  html += `<div class="map-bar" style="background:#E8F5E9; border:1.5px solid #66BB6A;"><span class="map-bar-icon">✅</span><div class="map-bar-text"><div class="t1" style="color:#2E7D32;">네이버 지도가 열렸습니다</div><div class="t2">${loc} 주변 실제 업체를 지도에서 확인하세요</div></div></div>`;
-  const mainQ = equip ? loc + ' ' + equip + ' 렌탈' : loc + ' 중장비 렌탈';
-  html += `<div class="map-bar"><span class="map-bar-icon">🗺️</span><div class="map-bar-text"><div class="t1">${loc} 지도 다시 열기</div><div class="t2">지도에서 위치·전화번호·리뷰 확인</div></div><a href="${mq(mainQ)}" target="_blank" style="background:#03C75A;">네이버</a><a href="${kq(mainQ)}" target="_blank" style="background:#FEE500;color:#333;">카카오</a></div>`;
-  html += `<hr class="divider"><div class="results-title">🔧 장비별 검색 (지도에서 실제 업체 확인)</div><ul class="biz-list">`;
+
+  // 1. 안내 메시지
+  html += `
+    <div class="map-bar" style="background:#E8F5E9; border:1.5px solid #66BB6A;">
+      <span class="map-bar-icon">✅</span>
+      <div class="map-bar-text">
+        <div class="t1" style="color:#2E7D32;">네이버 지도가 열렸습니다</div>
+        <div class="t2">${loc} 주변 실제 업체를 지도에서 확인하세요</div>
+      </div>
+    </div>
+  `;
+
+  // 2. 다시 열기 (네이버/카카오)
+  const mainQ = equip ? equip + ' 렌탈 ' + loc : '중장비 렌탈 ' + loc;
+  html += `
+    <div class="map-bar">
+      <span class="map-bar-icon">🗺️</span>
+      <div class="map-bar-text">
+        <div class="t1">${loc} 지도 다시 열기</div>
+        <div class="t2">지도에서 위치·전화번호·리뷰 확인</div>
+      </div>
+      <a href="${mq(mainQ)}" target="_blank" style="background:#03C75A;">네이버</a>
+      <a href="${kq(mainQ)}" target="_blank" style="background:#FEE500;color:#333;">카카오</a>
+    </div>
+  `;
+
+  // 3. 장비별 바로가기
+  html += `
+    <hr class="divider">
+    <div class="results-title">🔧 장비별 검색 (지도에서 실제 업체 확인)</div>
+    <ul class="biz-list">
+  `;
+
   categories.forEach((cat, i) => {
-    html += `<li class="biz-item"><div class="biz-num">${cat.icon}</div><div class="biz-info"><div class="biz-name">${cat.label}</div><div class="biz-desc">${loc} 주변 ${cat.label} 업체</div></div><a href="${mq(cat.query)}" target="_blank" class="biz-action naver">지도</a><a href="${nq(cat.query)}" target="_blank" class="biz-action google" style="background:#03C75A;">검색</a></li>`;
+    html += `
+      <li class="biz-item">
+        <div class="biz-num">${cat.icon}</div>
+        <div class="biz-info">
+          <div class="biz-name">${cat.label}</div>
+          <div class="biz-desc">${loc} 주변 ${cat.label} 업체</div>
+        </div>
+        <a href="${mq(cat.query)}" target="_blank" class="biz-action naver">지도</a>
+        <a href="${nq(cat.query)}" target="_blank" class="biz-action google" style="background:#03C75A;">검색</a>
+      </li>
+    `;
   });
+
   html += '</ul>';
-  html += `<hr class="divider"><div class="results-title">🔗 더 찾아보기</div><ul class="biz-list"><li class="biz-item"><div class="biz-num" style="background:#03C75A;">N</div><div class="biz-info"><div class="biz-name">네이버 블로그·카페 후기</div><div class="biz-desc">${loc} 중장비 렌탈 가격·후기 정보</div></div><a href="${nq(loc + ' 중장비 렌탈 가격 후기')}" target="_blank" class="biz-action naver">열기</a></li><li class="biz-item"><div class="biz-num" style="background:#FEE500;color:#333;">K</div><div class="biz-info"><div class="biz-name">카카오 지도 검색</div><div class="biz-desc">${loc} 주변 전체 렌탈 업체 지도</div></div><a href="${kq(loc + ' 중장비 렌탈')}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">열기</a></li><li class="biz-item"><div class="biz-num" style="background:#4285F4;">G</div><div class="biz-info"><div class="biz-name">구글 검색</div><div class="biz-desc">업체 홈페이지·견적 비교</div></div><a href="https://www.google.com/search?q=${encodeURIComponent(loc + ' 중장비 렌탈')}" target="_blank" class="biz-action google">열기</a></li></ul>`;
-  html += `<hr class="divider"><div class="results-title">📞 전화 바로걸기</div><ul class="biz-list"><li class="biz-item"><div class="biz-num" style="background:#E53935;">📞</div><div class="biz-info"><div class="biz-name">114 전화번호 안내</div><div class="biz-desc">${loc} 중장비 렌탈 업체 전화번호 문의</div></div><a href="tel:1588-5114" class="biz-action" style="background:#E53935;">전화</a></li><li class="biz-item"><div class="biz-num" style="background:#E53935;">📞</div><div class="biz-info"><div class="biz-name">전국 중장비 렌탈 114</div><div class="biz-desc">중장비 임대·렌탈 전문 상담</div></div><a href="tel:1544-5114" class="biz-action" style="background:#E53935;">전화</a></li><li class="biz-item"><div class="biz-num" style="background:#6366F1;">💡</div><div class="biz-info"><div class="biz-name">업체 직접 전화하기</div><div class="biz-desc">위 지도 검색에서 업체 선택 → 전화번호 클릭하면 바로 통화됩니다</div></li></ul>`;
+
+  // 4. 추가 검색
+  html += `
+    <hr class="divider">
+    <div class="results-title">🔗 더 찾아보기</div>
+    <ul class="biz-list">
+      <li class="biz-item">
+        <div class="biz-num" style="background:#03C75A;">N</div>
+        <div class="biz-info">
+          <div class="biz-name">네이버 블로그·카페 후기</div>
+          <div class="biz-desc">${loc} 중장비 렌탈 가격·후기 정보</div>
+        </div>
+        <a href="${nq('중장비 렌탈 가격 후기 ' + loc)}" target="_blank" class="biz-action naver">열기</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num" style="background:#FEE500;color:#333;">K</div>
+        <div class="biz-info">
+          <div class="biz-name">카카오 지도 검색</div>
+          <div class="biz-desc">${loc} 주변 전체 렌탈 업체 지도</div>
+        </div>
+        <a href="${kq('중장비 렌탈 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">열기</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num" style="background:#4285F4;">G</div>
+        <div class="biz-info">
+          <div class="biz-name">구글 검색</div>
+          <div class="biz-desc">업체 홈페이지·견적 비교</div>
+        </div>
+        <a href="https://www.google.com/search?q=${encodeURIComponent('중장비 렌탈 ' + loc)}" target="_blank" class="biz-action google">열기</a>
+      </li>
+    </ul>
+  `;
+
+  // 5. 전화 바로걸기 (모바일)
+  html += `
+    <hr class="divider">
+    <div class="results-title">📞 전화 바로걸기</div>
+    <ul class="biz-list">
+      <li class="biz-item">
+        <div class="biz-num" style="background:#E53935;">📞</div>
+        <div class="biz-info">
+          <div class="biz-name">114 전화번호 안내</div>
+          <div class="biz-desc">${loc} 중장비 렌탈 업체 전화번호 문의</div>
+        </div>
+        <a href="tel:1588-5114" class="biz-action" style="background:#E53935;">전화</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num" style="background:#E53935;">📞</div>
+        <div class="biz-info">
+          <div class="biz-name">전국 중장비 렌탈 114</div>
+          <div class="biz-desc">중장비 임대·렌탈 전문 상담</div>
+        </div>
+        <a href="tel:1544-5114" class="biz-action" style="background:#E53935;">전화</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num" style="background:#6366F1;">💡</div>
+        <div class="biz-info">
+          <div class="biz-name">업체 직접 전화하기</div>
+          <div class="biz-desc">위 지도 검색에서 업체 선택 → 전화번호 클릭하면 바로 통화됩니다</div>
+        </div>
+      </li>
+    </ul>
+  `;
+
   el.innerHTML = html;
   el.scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 </body>
 </html>
-
