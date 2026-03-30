@@ -620,6 +620,171 @@ function showResults(loc, equip) {
       <li class="biz-item"><div class="biz-num">🔌</div><div class="biz-info"><div class="biz-name">전기자재·조명</div><div class="biz-desc">\${loc} 전기부품·조명</div></div><a href="\${mq('전기자재 조명 ' + loc)}" target="_blank" class="biz-action naver">네이버</a><a href="\${kq('전기자재 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a></li>
     </ul>
   `;
+  // 3.6 원룸·부동산 검색
+  html += `
+    <hr class="divider">
+    <div class="results-title">🏠 원룸·부동산 검색</div>
+    <ul class="biz-list">
+      <li class="biz-item">
+        <div class="biz-num">🏠</div>
+        <div class="biz-info">
+          <div class="biz-name">원룸 부동산 (지도)</div>
+          <div class="biz-desc">${loc} 주변 원룸 중개사무소</div>
+        </div>
+        <a href="${mq('원룸 부동산 ' + loc)}" target="_blank" class="biz-action naver">네이버</a>
+        <a href="${kq('원룸 부동산 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num" style="background:#3B82F6;">직</div>
+        <div class="biz-info">
+          <div class="biz-name">직방 - 원룸 매물</div>
+          <div class="biz-desc">${loc} 원룸·오피스텔 실매물 검색</div>
+        </div>
+        <a href="https://www.zigbang.com/home/oneroom/map?search=${encodeURIComponent(loc)}" target="_blank" class="biz-action" style="background:#3B82F6;">열기</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num" style="background:#4FC3F7;">다</div>
+        <div class="biz-info">
+          <div class="biz-name">다방 - 원룸 매물</div>
+          <div class="biz-desc">${loc} 원룸·투룸 실매물 검색</div>
+        </div>
+        <a href="https://www.dabangapp.com/search?keyword=${encodeURIComponent(loc)}" target="_blank" class="biz-action" style="background:#4FC3F7;">열기</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num" style="background:#22C55E;">피</div>
+        <div class="biz-info">
+          <div class="biz-name">피터팬 - 직거래 원룸</div>
+          <div class="biz-desc">${loc} 중개수수료 없는 직거래</div>
+        </div>
+        <a href="https://search.naver.com/search.naver?query=${encodeURIComponent('피터팬의좋은방구하기 ' + loc + ' 원룸')}" target="_blank" class="biz-action" style="background:#22C55E;">검색</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num" style="background:#03C75A;">N</div>
+        <div class="biz-info">
+          <div class="biz-name">네이버 부동산</div>
+          <div class="biz-desc">${loc} 원룸·오피스텔 시세·매물</div>
+        </div>
+        <a href="https://land.naver.com/search/result.naver?keyword=${encodeURIComponent(loc)}" target="_blank" class="biz-action naver">열기</a>
+      </li>
+    </ul>
+  `;
+
+  // 3.7 식당 검색 (맛집·아침식사)
+  html += `
+    <hr class="divider">
+    <div class="results-title">🍚 식당 검색 (맛집·아침식사)</div>
+    <ul class="biz-list">
+      <li class="biz-item">
+        <div class="biz-num">🌅</div>
+        <div class="biz-info">
+          <div class="biz-name">아침식사 가능 식당</div>
+          <div class="biz-desc">${loc} 주변 아침 일찍 여는 식당</div>
+        </div>
+        <a href="${mq('아침식사 식당 ' + loc)}" target="_blank" class="biz-action naver">네이버</a>
+        <a href="${kq('아침식사 식당 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">🍚</div>
+        <div class="biz-info">
+          <div class="biz-name">해장국·국밥 (아침추천)</div>
+          <div class="biz-desc">${loc} 주변 24시·아침 국밥집</div>
+        </div>
+        <a href="${mq('해장국 국밥 24시 ' + loc)}" target="_blank" class="biz-action naver">지도</a>
+        <a href="${nq('해장국 국밥 아침 ' + loc + ' 맛집')}" target="_blank" class="biz-action" style="background:#03C75A;">검색</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">⭐</div>
+        <div class="biz-info">
+          <div class="biz-name">평점 높은 맛집</div>
+          <div class="biz-desc">${loc} 주변 평점 좋은 식당</div>
+        </div>
+        <a href="${nq(loc + ' 맛집 추천 평점')}" target="_blank" class="biz-action" style="background:#03C75A;">네이버</a>
+        <a href="https://www.mangoplate.com/search/${encodeURIComponent(loc)}" target="_blank" class="biz-action" style="background:#FF6347;">망고플레이트</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">🍱</div>
+        <div class="biz-info">
+          <div class="biz-name">백반·한식 (든든한 한끼)</div>
+          <div class="biz-desc">${loc} 주변 백반·가정식 식당</div>
+        </div>
+        <a href="${mq('백반 한식 식당 ' + loc)}" target="_blank" class="biz-action naver">지도</a>
+        <a href="${kq('백반 한식 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">🍖</div>
+        <div class="biz-info">
+          <div class="biz-name">고기·삼겹살 (회식용)</div>
+          <div class="biz-desc">${loc} 주변 고기집</div>
+        </div>
+        <a href="${mq('삼겹살 고기집 ' + loc)}" target="_blank" class="biz-action naver">지도</a>
+        <a href="${nq('삼겹살 맛집 ' + loc)}" target="_blank" class="biz-action" style="background:#03C75A;">검색</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">🍜</div>
+        <div class="biz-info">
+          <div class="biz-name">분식·편의점 (간단히)</div>
+          <div class="biz-desc">${loc} 주변 분식·편의점</div>
+        </div>
+        <a href="${mq('분식 ' + loc)}" target="_blank" class="biz-action naver">지도</a>
+        <a href="${mq('편의점 ' + loc)}" target="_blank" class="biz-action" style="background:#4285F4;">편의점</a>
+      </li>
+    </ul>
+  `;
+
+  // 3.8 철물점·공구상·볼트가게 검색
+  html += `
+    <hr class="divider">
+    <div class="results-title">🔩 철물점·공구·볼트 검색</div>
+    <ul class="biz-list">
+      <li class="biz-item">
+        <div class="biz-num">🔧</div>
+        <div class="biz-info">
+          <div class="biz-name">철물점</div>
+          <div class="biz-desc">${loc} 주변 철물점·금물점</div>
+        </div>
+        <a href="${mq('철물점 ' + loc)}" target="_blank" class="biz-action naver">네이버</a>
+        <a href="${kq('철물점 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">🛠️</div>
+        <div class="biz-info">
+          <div class="biz-name">공구상·공구마트</div>
+          <div class="biz-desc">${loc} 주변 공구 판매점</div>
+        </div>
+        <a href="${mq('공구상 공구마트 ' + loc)}" target="_blank" class="biz-action naver">네이버</a>
+        <a href="${kq('공구상 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">🔩</div>
+        <div class="biz-info">
+          <div class="biz-name">볼트·나사·체결부품</div>
+          <div class="biz-desc">${loc} 주변 볼트·나사 전문점</div>
+        </div>
+        <a href="${mq('볼트 나사 ' + loc)}" target="_blank" class="biz-action naver">네이버</a>
+        <a href="${nq('볼트 나사 부품 ' + loc)}" target="_blank" class="biz-action" style="background:#03C75A;">검색</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">🏭</div>
+        <div class="biz-info">
+          <div class="biz-name">산업용품·안전용품</div>
+          <div class="biz-desc">${loc} 주변 산업안전용품점</div>
+        </div>
+        <a href="${mq('산업용품 안전용품 ' + loc)}" target="_blank" class="biz-action naver">네이버</a>
+        <a href="${kq('산업용품 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a>
+      </li>
+      <li class="biz-item">
+        <div class="biz-num">🔌</div>
+        <div class="biz-info">
+          <div class="biz-name">전기자재·조명</div>
+          <div class="biz-desc">${loc} 주변 전기부품·조명 판매점</div>
+        </div>
+        <a href="${mq('전기자재 조명 ' + loc)}" target="_blank" class="biz-action naver">네이버</a>
+        <a href="${kq('전기자재 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a>
+      </li>
+    </ul>
+  `;
+
+
 
   // 4. 추가 검색
   html += `
