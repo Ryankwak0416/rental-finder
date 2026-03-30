@@ -584,7 +584,7 @@ function showResults(loc, equip) {
 
 
   // 3.6 원룸·부동산 검색
-  html += \`
+  html += `
     <hr class="divider">
     <div class="results-title">🏠 원룸·부동산 검색</div>
     <ul class="biz-list">
@@ -593,10 +593,10 @@ function showResults(loc, equip) {
       <li class="biz-item"><div class="biz-num" style="background:#4FC3F7;">다</div><div class="biz-info"><div class="biz-name">다방 - 원룸 매물</div><div class="biz-desc">\${loc} 원룸·투룸 실매물</div></div><a href="https://www.dabangapp.com/search?keyword=\${encodeURIComponent(loc)}" target="_blank" class="biz-action" style="background:#4FC3F7;">열기</a></li>
       <li class="biz-item"><div class="biz-num" style="background:#03C75A;">N</div><div class="biz-info"><div class="biz-name">네이버 부동산</div><div class="biz-desc">\${loc} 원룸·오피스텔 시세·매물</div></div><a href="https://land.naver.com/search/result.naver?keyword=\${encodeURIComponent(loc)}" target="_blank" class="biz-action naver">열기</a></li>
     </ul>
-  \`;
+  `;
 
   // 3.7 식당 검색
-  html += \`
+  html += `
     <hr class="divider">
     <div class="results-title">🍚 식당 검색 (맛집·아침식사)</div>
     <ul class="biz-list">
@@ -606,10 +606,10 @@ function showResults(loc, equip) {
       <li class="biz-item"><div class="biz-num">🍱</div><div class="biz-info"><div class="biz-name">백반·한식 (든든한 한끼)</div><div class="biz-desc">\${loc} 백반·가정식</div></div><a href="\${mq('백반 한식 식당 ' + loc)}" target="_blank" class="biz-action naver">지도</a><a href="\${kq('백반 한식 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a></li>
       <li class="biz-item"><div class="biz-num">🍖</div><div class="biz-info"><div class="biz-name">고기·삼겹살 (회식용)</div><div class="biz-desc">\${loc} 고기집</div></div><a href="\${mq('삼겹살 고기집 ' + loc)}" target="_blank" class="biz-action naver">지도</a><a href="\${nq('삼겹살 맛집 ' + loc)}" target="_blank" class="biz-action" style="background:#03C75A;">검색</a></li>
     </ul>
-  \`;
+  `;
 
   // 3.8 철물점·공구상·볼트
-  html += \`
+  html += `
     <hr class="divider">
     <div class="results-title">🔩 철물점·공구·볼트 검색</div>
     <ul class="biz-list">
@@ -619,7 +619,7 @@ function showResults(loc, equip) {
       <li class="biz-item"><div class="biz-num">🏭</div><div class="biz-info"><div class="biz-name">산업용품·안전용품</div><div class="biz-desc">\${loc} 산업안전용품점</div></div><a href="\${mq('산업용품 안전용품 ' + loc)}" target="_blank" class="biz-action naver">네이버</a><a href="\${kq('산업용품 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a></li>
       <li class="biz-item"><div class="biz-num">🔌</div><div class="biz-info"><div class="biz-name">전기자재·조명</div><div class="biz-desc">\${loc} 전기부품·조명</div></div><a href="\${mq('전기자재 조명 ' + loc)}" target="_blank" class="biz-action naver">네이버</a><a href="\${kq('전기자재 ' + loc)}" target="_blank" class="biz-action" style="background:#FEE500;color:#333;">카카오</a></li>
     </ul>
-  \`;
+  `;
 
   // 4. 추가 검색
   html += `
